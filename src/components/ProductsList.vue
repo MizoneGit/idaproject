@@ -23,5 +23,23 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, 332px);
     grid-gap: 16px;
+    width: 100%;
+
+    @media screen and (max-width: 1439px) {
+      grid-template-columns: repeat(2, 332px);
+    }
+    @media screen and (max-width: 1091px) {
+      grid-template-columns: 332px;
+
+      &__item {
+        width: 50%;
+      }
+    }
+    @media screen and (max-width: 740px) {
+      grid-template-columns: 1fr;
+      .product {
+        justify-self: center;
+      }
+    }
   }
 </style>

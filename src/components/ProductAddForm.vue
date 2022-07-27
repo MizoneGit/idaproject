@@ -38,6 +38,7 @@
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
     row-gap: 16px;
 
     &__input {

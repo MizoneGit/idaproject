@@ -6,7 +6,7 @@
       </div>
       <div class="homepage__body">
         <product-add-form class="homepage__form"/>
-        <products-list :products="products"/>
+        <products-list :products="products" class="homepage__products"/>
       </div>
     </div>
   </div>
@@ -62,11 +62,27 @@
     &__form {
       width: 100%;
       max-width: 332px;
+
+      @media screen and (max-width: 1439px) {
+        max-width: unset;
+      }
     }
 
     &__body {
       display: flex;
+      width: 100%;
       gap: 16px;
+
+      @media screen and (max-width: 740px) {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+    }
+
+    &__products {
+      @media screen and (max-width: 740px) {
+        justify-content: center;
+      }
     }
   }
 </style>
