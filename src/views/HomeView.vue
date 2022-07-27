@@ -4,31 +4,69 @@
       <div class="homepage__header">
         <h1 class="homepage__title">Добавление товара</h1>
       </div>
-      <product-add-form class="homepage__form"/>
-      <product-element />
+      <div class="homepage__body">
+        <product-add-form class="homepage__form"/>
+        <products-list :products="products"/>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
   import productAddForm from "@/components/ProductAddForm";
-  import productElement from "@/components/ProductElement";
+  import productsList from "@/components/ProductsList";
   export default {
     name: 'HomeView',
-    components: { productAddForm, productElement},
+    components: { productsList, productAddForm },
+    data() {
+      return {
+        products: [
+          {
+            id: 1,
+            name: 'Продукт 1',
+            description: 'Описание продукта 1',
+            price: 10000
+          },
+          {
+            id: 2,
+            name: 'Продукт 2',
+            description: 'Описание продукта 2',
+            price: 10000
+          },
+          {
+            id: 3,
+            name: 'Продукт 3',
+            description: 'Описание продукта 3',
+            price: 10000
+          },
+          {
+            id: 4,
+            name: 'Продукт 4',
+            description: 'Описание продукта 4',
+            price: 10000
+          }
+        ]
+      }
+    }
   }
 </script>
 
 <style scoped lang="scss">
   .homepage {
-    padding: 32px;
+    padding: 32px 0;
 
     &__header {
       margin-bottom: 8px;
     }
 
     &__form {
+      width: 100%;
       max-width: 332px;
+    }
+
+    &__body {
+      display: flex;
+      gap: 16px;
     }
   }
 </style>
