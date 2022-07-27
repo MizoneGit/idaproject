@@ -4,16 +4,22 @@
       <img src="@/assets/images/default.jpg" alt="Товар">
     </div>
     <div class="product__content">
-      <h3 class="product__title">Наименование товара</h3>
-      <p class="product__description">Довольно-таки интересное описание товара в несколько строк. Довольно-таки интересное описание товара в несколько строк</p>
-      <div class="product__price">10 000 руб.</div>
+      <h3 class="product__title">{{ product.name }}</h3>
+      <p class="product__description">{{ product.description }}</p>
+      <div class="product__price">{{ product.price }} руб.</div>
     </div>
   </div>
 </template>
 
 <script>
   export default {
-    name: "ProductElement"
+    name: "ProductElement",
+    props: {
+      product: {
+        type: Object,
+        required: true
+      }
+    }
   }
 </script>
 

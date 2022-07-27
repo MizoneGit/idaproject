@@ -11,12 +11,12 @@
     </div>
 
     <div class="add-form__input">
-      <v-label for="link">Ссылка на изображение товара</v-label>
+      <v-label :required="true" for="link">Ссылка на изображение товара</v-label>
       <v-input id="link" placeholder="Введите ссылку" />
     </div>
 
     <div class="add-form__input">
-      <v-label for="price">Цена товара</v-label>
+      <v-label :required="true" for="price">Цена товара</v-label>
       <v-input id="price" placeholder="Введите цену" />
     </div>
 
@@ -38,6 +38,7 @@
     border-radius: 4px;
     display: flex;
     flex-direction: column;
+    align-self: flex-start;
     row-gap: 16px;
 
     &__input {
