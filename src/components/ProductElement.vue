@@ -8,12 +8,17 @@
       <p class="product__description">{{ product.description }}</p>
       <div class="product__price">{{ product.price }} руб.</div>
     </div>
+    <div class="product__buttons">
+      <v-button-delete />
+    </div>
   </div>
 </template>
 
 <script>
   export default {
     name: "ProductElement",
+    components: {},
+
     props: {
       product: {
         type: Object,
@@ -25,11 +30,17 @@
 
 <style scoped lang="scss">
   .product {
+    position: relative;
     width: 100%;
     max-width: 332px;
     background: #FFFEFB;
     box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
     border-radius: 4px;
+    cursor: pointer;
+
+    &:hover &__buttons {
+      opacity: 1;
+    }
 
     &__image {
       display: flex;
@@ -63,5 +74,15 @@
       color: #3F3F3F;
       margin-top: 16px;
     }
+
+    &__buttons {
+      opacity: 0;
+      top: -8px;
+      right: -8px;
+      position: absolute;
+      transition: opacity 0.3s linear;
+    }
   }
+
+
 </style>
