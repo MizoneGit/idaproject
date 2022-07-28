@@ -15,39 +15,16 @@
 <script>
   import productAddForm from "@/components/ProductAddForm";
   import productsList from "@/components/ProductsList";
+  import { mapState } from 'vuex';
+
   export default {
     name: 'HomeView',
     components: { productsList, productAddForm },
-    data() {
-      return {
-        products: [
-          {
-            id: 1,
-            name: 'Продукт 1',
-            description: 'Описание продукта 1',
-            price: 10000
-          },
-          {
-            id: 2,
-            name: 'Продукт 2',
-            description: 'Описание продукта 2',
-            price: 10000
-          },
-          {
-            id: 3,
-            name: 'Продукт 3',
-            description: 'Описание продукта 3',
-            price: 10000
-          },
-          {
-            id: 4,
-            name: 'Продукт 4',
-            description: 'Описание продукта 4',
-            price: 10000
-          }
-        ]
-      }
-    }
+    computed: {
+      ...mapState({
+        products: state => state.products,
+      }),
+    },
   }
 </script>
 

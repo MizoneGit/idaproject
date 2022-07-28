@@ -1,32 +1,46 @@
 <template>
-  <form class="add-form">
+  <form class="add-form" @submit.prevent>
     <div class="add-form__input">
       <v-label :required="true" for="name">Наименование товара</v-label>
-      <v-input id="name" placeholder="Введите наименование товара" />
+      <v-input v-model="add_form.name" id="name" placeholder="Введите наименование товара" />
     </div>
 
     <div class="add-form__input">
       <v-label for="description">Описание товара</v-label>
-      <v-textarea id="description" placeholder="Введите описание товара" rows="5"></v-textarea>
+      <v-textarea v-model="add_form.description" id="description" placeholder="Введите описание товара" rows="5"></v-textarea>
     </div>
 
     <div class="add-form__input">
       <v-label :required="true" for="link">Ссылка на изображение товара</v-label>
-      <v-input id="link" placeholder="Введите ссылку" />
+      <v-input v-model="add_form.link" id="link" placeholder="Введите ссылку" />
     </div>
 
     <div class="add-form__input">
       <v-label :required="true" for="price">Цена товара</v-label>
-      <v-input id="price" placeholder="Введите цену" />
+      <v-input v-model="add_form.price" id="price" placeholder="Введите цену" />
     </div>
 
-    <v-button type="submit">Добавить товар</v-button>
+    <v-button @click="createProduct" type="submit">Добавить товар</v-button>
   </form>
 </template>
 
 <script>
+  import { ref } from "vue";
+  import { useStore } from "vuex";
+
   export default {
-    name: "ProductAddForm"
+    name: "ProductAddForm",
+    setup() {
+      const add_form = ref({});
+      const store = useStore();
+
+      const createProduct = () => {
+        add_form.value.id = Date.now();
+        store.dispatch('CREATE_PRODUCT', add_form.value);
+      }
+
+      return { add_form, createProduct }
+    }
   }
 </script>
 
