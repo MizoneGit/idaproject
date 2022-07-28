@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <div class="product__image">
-      <img src="@/assets/images/default.jpg" alt="Товар">
+      <img :src="formSrcImage(product.src)" alt="Товар">
     </div>
     <div class="product__content">
       <h3 class="product__title">{{ product.name }}</h3>
@@ -18,6 +18,15 @@
       product: {
         type: Object,
         required: true
+      }
+    },
+    methods: {
+      formSrcImage(src) {
+        if (!src) {
+          return require('@/assets/images/default.jpg')
+        }
+
+        return require(src);
       }
     }
   }
