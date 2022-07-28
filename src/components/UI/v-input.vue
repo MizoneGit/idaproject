@@ -1,10 +1,18 @@
 <template>
-  <input class="input" />
+  <input :value="modelValue" @input="updateInput" class="input" />
 </template>
 
 <script>
   export default {
-    name: "v-input"
+    name: "v-input",
+    props: {
+      modelValue: [String, Number]
+    },
+    methods: {
+      updateInput(event) {
+        this.$emit('update:modelValue', event.target.value);
+      }
+    }
   }
 </script>
 
