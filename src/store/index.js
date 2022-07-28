@@ -45,6 +45,7 @@ export default createStore({
   },
   actions: {
     CREATE_PRODUCT({ commit }, product) {
+      product.id = Date.now();
       commit('ADD_PRODUCT', product);
     }
   },

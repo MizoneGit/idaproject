@@ -1,12 +1,18 @@
 <template>
-  <button class="btn">
+  <button class="btn" :class="!isActive ? 'btn--no-active' : ''">
     <slot></slot>
   </button>
 </template>
 
 <script>
   export default {
-    name: "v-button"
+    name: "v-button",
+    props: {
+      isActive: {
+        type: Boolean,
+        default: false
+      }
+    }
   }
 </script>
 
@@ -30,6 +36,8 @@
     &--no-active {
       background: #EEEEEE;
       color: #B4B4B4;
+      pointer-events: none;
+      cursor: default;
     }
 
     &:hover {
