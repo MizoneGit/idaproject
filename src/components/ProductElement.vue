@@ -9,12 +9,14 @@
       <div class="product__price">{{ product.price }} руб.</div>
     </div>
     <div class="product__buttons">
-      <v-button-delete />
+      <v-button-delete @click="deleteProduct(product)"/>
     </div>
   </div>
 </template>
 
 <script>
+  import { mapMutations } from 'vuex';
+
   export default {
     name: "ProductElement",
     components: {},
@@ -26,6 +28,9 @@
       }
     },
     methods: {
+      ...mapMutations({
+        deleteProduct: 'DELETE_PRODUCT'
+      }),
       formSrcImage(src) {
         if (!src) {
           return require('@/assets/images/default.jpg')
