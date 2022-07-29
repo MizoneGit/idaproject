@@ -6,7 +6,7 @@
     <div class="product__content">
       <h3 class="product__title">{{ product.name }}</h3>
       <p class="product__description">{{ product.description }}</p>
-      <div class="product__price">{{ product.price }} руб.</div>
+      <div class="product__price">{{ formatPriceRUB(product.price) }}</div>
     </div>
     <div class="product__buttons">
       <v-button-delete @click="deleteProduct(product)"/>
@@ -37,6 +37,11 @@
         }
 
         return require(src);
+      },
+      formatPriceRUB(price) {
+        if (!parseInt(price)) return '';
+
+        return new Intl.NumberFormat('ru-RU').format(price) + ' руб.';
       }
     }
   }

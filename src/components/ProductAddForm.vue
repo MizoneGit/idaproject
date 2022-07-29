@@ -16,7 +16,7 @@
     </div>
     <div class="add-form__input">
       <v-label :required="true" for="price">Цена товара</v-label>
-      <v-input v-model="dataForm.price" id="price" placeholder="Введите цену" />
+      <v-input v-model="formatPriceInput" id="price" placeholder="Введите цену" />
       <v-error-messages :error="errors.price"></v-error-messages>
     </div>
     <v-button @click="addProduct" :isActive="isActiveButton" type="submit">Добавить товар</v-button>
@@ -36,6 +36,19 @@
       }
     },
     computed: {
+      formatPriceInput: {
+        get() {
+          if (!this.dataForm.price) return;
+          if (!parseInt(this.dataForm.price)) return this.dataForm.price;
+          return Number(this.dataForm.price)?.toLocaleString();
+        },
+        set(value) {
+          this.dataForm.price = value;
+          if (parseInt(this.dataForm.price)) {
+            this.dataForm.price = +value.replace(/\s/g, "");
+          }
+        },
+      },
     },
     methods: {
       ...mapActions({
