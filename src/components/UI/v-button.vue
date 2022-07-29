@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="!isActive ? 'btn--no-active' : ''">
+  <button class="btn" :class="{'btn--no-active': !isActive }">
     <slot></slot>
   </button>
 </template>

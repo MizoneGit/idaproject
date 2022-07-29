@@ -1,5 +1,5 @@
 <template>
-  <label class="label" :class="required ? 'label--required' : ''">
+  <label class="label" :class="{'label--required': required }">
     <slot></slot>
   </label>
 </template>
