@@ -1,6 +1,6 @@
 <template>
   <div class="products-list">
-    <product-element v-for="product in products" :key="product.id" :product="product" class="products__item" />
+    <product-element v-for="product in products" :key="product.id" :product="product" class="products-list__item" />
   </div>
 </template>
 
@@ -28,17 +28,21 @@
     @media screen and (max-width: 1439px) {
       grid-template-columns: repeat(2, 332px);
     }
+
     @media screen and (max-width: 1091px) {
-      grid-template-columns: 332px;
+      display: flex;
+      flex-wrap: wrap;
+
 
       &__item {
-        width: 50%;
+        width: calc(50% - 8px);
+        max-width: unset;
       }
     }
-    @media screen and (max-width: 740px) {
-      grid-template-columns: 1fr;
-      .product {
-        justify-self: center;
+    @media screen and (max-width: 640px) {
+      &__item {
+        width: 100%;
+        max-width: unset;
       }
     }
   }

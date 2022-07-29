@@ -3,11 +3,9 @@
     <div class="product__image">
       <img :src="formSrcImage(product.src)" alt="Товар">
     </div>
-    <div class="product__content">
-      <h3 class="product__title">{{ product.name }}</h3>
-      <p class="product__description">{{ product.description }}</p>
-      <div class="product__price">{{ formatPriceRUB(product.price) }}</div>
-    </div>
+    <h3 class="product__title">{{ product.name }}</h3>
+    <p class="product__description">{{ product.description }}</p>
+    <div class="product__price">{{ formatPriceRUB(product.price) }}</div>
     <div class="product__buttons">
       <v-button-delete @click="deleteProduct(product)"/>
     </div>
@@ -50,6 +48,10 @@
 <style scoped lang="scss">
   .product {
     position: relative;
+    display: flex;
+    padding-bottom: 16px;
+    flex-direction: column;
+    row-gap: 16px;
     width: 100%;
     max-width: 332px;
     background: #FFFEFB;
@@ -61,30 +63,33 @@
       opacity: 1;
     }
 
-    &__image {
-      display: flex;
-      justify-content: center;
-      height: 200px;
-      width: 100%;
-      max-width: 332px;
-      position: relative;
-
-      & img {
-        width: 100%;
-      }
+    &__title {
+      padding: 0 16px;
     }
 
-    &__content {
-      display: flex;
-      flex-direction: column;
-      row-gap: 16px;
-      padding: 16px;
+    &__image {
+      display: block;
+      height: 200px;
+      width: 100%;
+      position: relative;
+      overflow: hidden;
+
+      & img {
+        display: block;
+        width: 100%;
+      }
+      @media screen and (max-width: 1091px) {
+        height: unset;
+        max-width: unset;
+      }
     }
 
     &__description {
       font-weight: 400;
       font-size: 16px;
       color: #3F3F3F;
+      flex: 1 1;
+      padding: 0 16px;
     }
 
     &__price {
@@ -92,6 +97,7 @@
       font-size: 24px;
       color: #3F3F3F;
       margin-top: 16px;
+      padding: 0 16px;
     }
 
     &__buttons {
@@ -102,6 +108,4 @@
       transition: opacity 0.3s linear;
     }
   }
-
-
 </style>
