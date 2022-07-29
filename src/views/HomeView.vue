@@ -70,8 +70,9 @@
 
     &__body {
       display: flex;
-      width: 100%;
       gap: 16px;
+      align-items: flex-start;
+      width: 100%;
 
       @media screen and (max-width: 1091px) {
         flex-direction: column;
