@@ -1,4 +1,5 @@
 <template>
+  <v-alert :isSuccess="isSuccess"/>
   <div class="homepage">
     <div class="container">
       <div class="homepage__header">
@@ -17,18 +18,26 @@
 <script>
   import productAddForm from "@/components/ProductAddForm";
   import productsList from "@/components/ProductsList";
-  import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
+  import { mapState, mapMutations, mapGetters } from 'vuex';
 
   export default {
     name: 'HomeView',
     components: { productsList, productAddForm },
+    data() {
+      return {
+        isSuccess: false
+      }
+    },
     methods: {
       ...mapMutations({
-        setSelectedSort: 'SET_SELECTED_SORT'
+        setSelectedSort: 'SET_SELECTED_SORT',
+        showAlert: 'SHOW_ALERT'
       }),
-      ...mapActions({
-        createProduct: 'CREATE_PRODUCT'
-      }),
+      createProduct(product) {
+        this.products.push(product);
+        this.isSuccess = true;
+        this.showAlert(1500);
+      },
     },
     computed: {
       ...mapState({
