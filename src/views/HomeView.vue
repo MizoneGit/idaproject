@@ -1,5 +1,5 @@
 <template>
-  <v-alert :isSuccess="isSuccess"/>
+  <v-alert/>
   <div class="homepage">
     <div class="container">
       <div class="homepage__header">
@@ -8,7 +8,7 @@
       </div>
       <div class="homepage__body">
         <product-add-form @create="createProduct" class="homepage__form"/>
-        <products-list v-if="sortedProducts.length" :products="sortedProducts" class="homepage__products"/>
+        <products-list v-if="sortedProducts.length" :products="sortedProducts" @remove="removeProduct" class="homepage__products"/>
         <div v-else class="homepage__empty">Список пуст</div>
       </div>
     </div>
@@ -18,27 +18,11 @@
 <script>
   import productAddForm from "@/components/ProductAddForm";
   import productsList from "@/components/ProductsList";
-  import { mapState, mapMutations, mapGetters } from 'vuex';
+  import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
 
   export default {
     name: 'HomeView',
     components: { productsList, productAddForm },
-    data() {
-      return {
-        isSuccess: false
-      }
-    },
-    methods: {
-      ...mapMutations({
-        setSelectedSort: 'SET_SELECTED_SORT',
-        showAlert: 'SHOW_ALERT'
-      }),
-      createProduct(product) {
-        this.products.push(product);
-        this.isSuccess = true;
-        this.showAlert(1500);
-      },
-    },
     computed: {
       ...mapState({
         products: state => state.products,
@@ -48,6 +32,24 @@
       ...mapGetters({
         sortedProducts: 'SORTED_PRODUCTS',
       })
+    },
+    methods: {
+      ...mapMutations({
+        setSelectedSort: 'SET_SELECTED_SORT',
+      }),
+      ...mapActions({
+        showAlert: 'SHOW_ALERT',
+        createProductStore: 'CREATE_PRODUCT',
+        removeProductStore: 'REMOVE_PRODUCT'
+      }),
+      createProduct(product) {
+        this.createProductStore(product);
+        this.showAlert(true);
+      },
+      removeProduct(product) {
+        this.removeProductStore(product)
+        this.showAlert(true);
+      },
     },
   }
 </script>

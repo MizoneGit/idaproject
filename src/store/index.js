@@ -2,42 +2,15 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    products: [
-      {
-        id: 1,
-        name: 'Продукт 1',
-        url: '',
-        description: 'Описание продукта 1',
-        price: 5000
-      },
-      {
-        id: 2,
-        name: 'Продукт 2',
-        url: '',
-        description: 'Описание продукта 2',
-        price: 30000
-      },
-      {
-        id: 3,
-        name: 'Продукт 3',
-        url: '',
-        description: 'Описание продукта 3',
-        price: 80000
-      },
-      {
-        id: 4,
-        name: 'Продукт 4',
-        url: '',
-        description: 'Описание продукта 4',
-        price: 90000
-      }
-    ],
+    products: JSON.parse(localStorage.getItem('products')) ?? [],
     sortOptions: [
       { value: 'name', name: 'По наименованию' },
       { value: 'min', name: 'По цене min' },
       { value: 'max', name: 'По цене max' }
     ],
     selectedSort: '',
+    showAlert: false,
+    isSuccess: false
   },
   getters: {
     SORTED_PRODUCTS(state) {
@@ -53,24 +26,46 @@ export default createStore({
     },
   },
   mutations: {
+    SET_LOCAL_STORAGE_DATA(state) {
+      localStorage.setItem('products', JSON.stringify(state.products));
+    },
     ADD_PRODUCT(state, product) {
-      state.products.push(product)
+      state.products.push(product);
     },
     DELETE_PRODUCT(state, product) {
       state.products = [...state.products].filter(p => p.id !== product.id);
     },
+    SET_PRODUCTS(state, products) {
+      state.products = products;
+    },
     SET_SELECTED_SORT(state, selectedSort) {
       state.selectedSort = selectedSort;
     },
-    SHOW_ALERT(state, timeShow) {
-      state.showAlert = true;
-
-      setTimeout(() => {
-        state.showAlert = false;
-      }, timeShow);
+    SET_SUCCESS(state, status) {
+      state.isSuccess = status;
+    },
+    SET_SHOW_ALERT(state, status = false) {
+      state.showAlert = status;
     }
   },
   actions: {
+    SHOW_ALERT({ commit }, isSuccess) {
+      commit('SET_SUCCESS', isSuccess);
+      commit('SET_SHOW_ALERT', true);
+
+      setTimeout(() => {
+        commit('SET_SHOW_ALERT');
+      }, 1500);
+    },
+    CREATE_PRODUCT({ commit }, product) {
+      product.id = Date.now();
+      commit('ADD_PRODUCT', product);
+      commit('SET_LOCAL_STORAGE_DATA');
+    },
+    REMOVE_PRODUCT({ commit }, product) {
+      commit('DELETE_PRODUCT', product);
+      commit('SET_LOCAL_STORAGE_DATA');
+    }
   },
   modules: {
   }

@@ -18,15 +18,10 @@ import { mapState } from "vuex";
 
 export default {
   name: "v-alert",
-  props: {
-    isSuccess: {
-      type: Boolean,
-      require: true
-    }
-  },
   computed: {
     ...mapState({
-      showAlert: state => state.showAlert
+      showAlert: state => state.showAlert,
+      isSuccess: state => state.isSuccess
     }),
   }
 }

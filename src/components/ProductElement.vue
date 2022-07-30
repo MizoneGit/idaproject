@@ -7,18 +7,14 @@
     <p class="product__description">{{ product.description }}</p>
     <div class="product__price">{{ formatPriceRUB(product.price) }}</div>
     <div class="product__buttons">
-      <v-button-delete @click="deleteProduct(product)"/>
+      <v-button-delete @click="removeProduct"/>
     </div>
   </div>
 </template>
 
 <script>
-  import { mapMutations } from 'vuex';
-
   export default {
     name: "ProductElement",
-    components: {},
-
     props: {
       product: {
         type: Object,
@@ -26,9 +22,6 @@
       }
     },
     methods: {
-      ...mapMutations({
-        deleteProduct: 'DELETE_PRODUCT'
-      }),
       formSrcImage(url) {
         if (!url) {
           return require('@/assets/images/default.jpg')
@@ -40,7 +33,10 @@
         if (!parseInt(price)) return '';
 
         return new Intl.NumberFormat('ru-RU').format(price) + ' руб.';
-      }
+      },
+      removeProduct() {
+        this.$emit('remove', this.product);
+      },
     }
   }
 </script>
