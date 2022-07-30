@@ -2,7 +2,7 @@ import { createStore } from 'vuex'
 
 export default createStore({
   state: {
-    products: JSON.parse(localStorage.getItem('products')) ?? [],
+    products: [],
     sortOptions: [
       { value: 'name', name: 'По наименованию' },
       { value: 'min', name: 'По цене min' },
@@ -10,7 +10,8 @@ export default createStore({
     ],
     selectedSort: '',
     showAlert: false,
-    isSuccess: false
+    isSuccess: false,
+    isProductLoading: true
   },
   getters: {
     SORTED_PRODUCTS(state) {
@@ -46,6 +47,9 @@ export default createStore({
     },
     SET_SHOW_ALERT(state, status = false) {
       state.showAlert = status;
+    },
+    SET_LOADING(state, status) {
+      state.isProductLoading = status;
     }
   },
   actions: {
@@ -75,6 +79,13 @@ export default createStore({
       } catch (e) {
         dispatch('SHOW_ALERT');
       }
+    },
+    FETCH_PRODUCTS({ commit, dispatch }) {
+      let products = JSON.parse(localStorage.getItem('products')) ?? [];
+      commit('SET_PRODUCTS', products);
+      setTimeout(() => {
+        commit('SET_LOADING', false);
+      }, 2000);
     }
   },
   modules: {

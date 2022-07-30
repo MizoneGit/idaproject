@@ -50,8 +50,8 @@ export default {
       border-radius: 4px;
 
       &-image {
-        max-width: 24px;
-        max-height: 24px;
+        width: 24px;
+        height: 24px;
         display: flex;
         align-items: center;
         justify-content: center;

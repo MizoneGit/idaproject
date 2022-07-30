@@ -1,9 +1,10 @@
 <template>
-  <div class="products-list">
+  <div v-if="products.length" class="products-list">
     <transition-group name="products-list">
       <product-element v-for="product in products" :key="product.id" :product="product" @remove="removeProduct(product)" class="products-list__item" />
     </transition-group>
   </div>
+  <div v-else class="products-list__empty">Список пуст</div>
 </template>
 
 <script>
@@ -46,6 +47,18 @@
     }
     &-move {
       transition: transform 0.8s ease;
+    }
+
+    &__empty {
+      width: 100%;
+      padding: 24px;
+      background: #FFFEFB;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
+      border-radius: 4px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 600;
+      color: #49485E;
     }
 
     @media screen and (max-width: 1439px) {
