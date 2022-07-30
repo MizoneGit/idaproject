@@ -62,12 +62,15 @@ export default createStore({
     SET_SELECTED_SORT(state, selectedSort) {
       state.selectedSort = selectedSort;
     },
+    SHOW_ALERT(state, timeShow) {
+      state.showAlert = true;
+
+      setTimeout(() => {
+        state.showAlert = false;
+      }, timeShow);
+    }
   },
   actions: {
-    CREATE_PRODUCT({ commit }, product) {
-      product.id = Date.now();
-      commit('ADD_PRODUCT', product);
-    }
   },
   modules: {
   }
