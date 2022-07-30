@@ -49,7 +49,7 @@ export default createStore({
     }
   },
   actions: {
-    SHOW_ALERT({ commit }, isSuccess) {
+    SHOW_ALERT({ commit }, isSuccess = false) {
       commit('SET_SUCCESS', isSuccess);
       commit('SET_SHOW_ALERT', true);
 
@@ -57,14 +57,24 @@ export default createStore({
         commit('SET_SHOW_ALERT');
       }, 1500);
     },
-    CREATE_PRODUCT({ commit }, product) {
+    CREATE_PRODUCT({ commit, dispatch }, product) {
       product.id = Date.now();
-      commit('ADD_PRODUCT', product);
-      commit('SET_LOCAL_STORAGE_DATA');
+      try {
+        commit('ADD_PRODUCT', product);
+        commit('SET_LOCAL_STORAGE_DATA');
+        dispatch('SHOW_ALERT', true);
+      } catch (e) {
+        dispatch('SHOW_ALERT');
+      }
     },
-    REMOVE_PRODUCT({ commit }, product) {
-      commit('DELETE_PRODUCT', product);
-      commit('SET_LOCAL_STORAGE_DATA');
+    REMOVE_PRODUCT({ commit, dispatch }, product) {
+      try {
+        commit('DELETE_PRODUCT', product);
+        commit('SET_LOCAL_STORAGE_DATA');
+        dispatch('SHOW_ALERT', true);
+      } catch (e) {
+        dispatch('SHOW_ALERT');
+      }
     }
   },
   modules: {

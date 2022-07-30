@@ -39,17 +39,9 @@
       }),
       ...mapActions({
         showAlert: 'SHOW_ALERT',
-        createProductStore: 'CREATE_PRODUCT',
-        removeProductStore: 'REMOVE_PRODUCT'
-      }),
-      createProduct(product) {
-        this.createProductStore(product);
-        this.showAlert(true);
-      },
-      removeProduct(product) {
-        this.removeProductStore(product)
-        this.showAlert(true);
-      },
+        createProduct: 'CREATE_PRODUCT',
+        removeProduct: 'REMOVE_PRODUCT'
+      })
     },
   }
 </script>
