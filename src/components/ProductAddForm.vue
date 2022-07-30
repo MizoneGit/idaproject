@@ -11,8 +11,8 @@
     </div>
     <div class="add-form__input">
       <v-label :required="true" for="link">Ссылка на изображение товара</v-label>
-      <v-input v-model="dataForm.link" id="link" placeholder="Введите ссылку" />
-      <v-error-messages :error="errors.link"></v-error-messages>
+      <v-input v-model="dataForm.url" id="link" placeholder="Введите ссылку" />
+      <v-error-messages :error="errors.url"></v-error-messages>
     </div>
     <div class="add-form__input">
       <v-label :required="true" for="price">Цена товара</v-label>
@@ -66,9 +66,9 @@
           this.errors.name = result;
         }
 
-        result = this.validateLink(this.dataForm.link);
+        result = this.validateUrl(this.dataForm.url);
         if (result) {
-          this.errors.link = result;
+          this.errors.url = result;
         }
 
         result = this.validatePrice(this.dataForm.price);
@@ -84,16 +84,22 @@
       validateName(name) {
         return !name ? 'Поле является обязательным' : false;
       },
-      validateLink(link) {
-        const regPattern = '^[a-z]+://';
-        let regExp = new RegExp(regPattern, 'i');
+      validateUrl(url) {
+        const regPatternUrl = '^[a-z]+://';
+        const regPatternImage = '\.(gif|jpg|webp|png)'
+        let regExpUrl = new RegExp(regPatternUrl, 'i');
+        let regExpImage = new RegExp(regPatternImage, 'i');
 
-        if (!link) {
+        if (!url) {
           return 'Поле является обязательным';
         }
 
-        if (!regExp.test(link)) {
+        if (!regExpUrl.test(url)) {
           return 'Введенное значение не является ссылкой';
+        }
+
+        if (!regExpImage.test(url)) {
+          return 'Введенная ссылка не содержит картинку';
         }
 
         return false;

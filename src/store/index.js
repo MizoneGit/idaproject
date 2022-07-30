@@ -6,28 +6,28 @@ export default createStore({
       {
         id: 1,
         name: 'Продукт 1',
-        link: '',
+        url: '',
         description: 'Описание продукта 1',
         price: 5000
       },
       {
         id: 2,
         name: 'Продукт 2',
-        link: '',
+        url: '',
         description: 'Описание продукта 2',
         price: 30000
       },
       {
         id: 3,
         name: 'Продукт 3',
-        link: '',
+        url: '',
         description: 'Описание продукта 3',
         price: 80000
       },
       {
         id: 4,
         name: 'Продукт 4',
-        link: '',
+        url: '',
         description: 'Описание продукта 4',
         price: 90000
       }
