@@ -8,8 +8,8 @@
       </div>
       <div class="homepage__body">
         <product-add-form @create="createProduct" class="homepage__form"/>
-        <products-list v-if="sortedProducts.length" :products="sortedProducts" @remove="removeProduct" class="homepage__products"/>
-        <div v-else class="homepage__empty">Список пуст</div>
+        <products-list v-if="!isProductLoading" :products="sortedProducts" @remove="removeProduct" class="homepage__products"/>
+        <v-loader class="homepage__loader" v-else></v-loader>
       </div>
     </div>
   </div>
@@ -28,6 +28,7 @@
         products: state => state.products,
         sortOptions: state => state.sortOptions,
         selectedSort: state => state.selectedSort,
+        isProductLoading: state => state.isProductLoading
       }),
       ...mapGetters({
         sortedProducts: 'SORTED_PRODUCTS',
@@ -40,9 +41,13 @@
       ...mapActions({
         showAlert: 'SHOW_ALERT',
         createProduct: 'CREATE_PRODUCT',
-        removeProduct: 'REMOVE_PRODUCT'
+        removeProduct: 'REMOVE_PRODUCT',
+        fetchProducts: 'FETCH_PRODUCTS'
       })
     },
+    mounted() {
+      this.fetchProducts();
+    }
   }
 </script>
 
@@ -96,16 +101,12 @@
         justify-content: center;
       }
     }
-    &__empty {
+    &__loader {
+      display: flex;
+      justify-content: center;
       width: 100%;
-      padding: 24px;
-      background: #FFFEFB;
-      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
-      border-radius: 4px;
-      text-align: center;
-      font-size: 32px;
-      font-weight: 600;
-      color: #49485E;
+      height: 100%;
+      align-items: center;
     }
   }
 </style>

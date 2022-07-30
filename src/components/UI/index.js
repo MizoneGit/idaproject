@@ -6,7 +6,8 @@ import VButtonDelete from "@/components/UI/v-button-delete";
 import VErrorMessages from "@/components/UI/v-error-messages";
 import VSelect from "@/components/UI/v-select";
 import VAlert from "@/components/UI/v-alert";
+import VLoader from "@/components/UI/v-loader";
 
 export default [
-    VInput, VButton, VLabel, VTextarea, VButtonDelete, VErrorMessages, VSelect, VAlert
+    VInput, VButton, VLabel, VTextarea, VButtonDelete, VErrorMessages, VSelect, VAlert, VLoader
 ];
