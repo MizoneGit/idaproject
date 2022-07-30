@@ -1,5 +1,5 @@
 <template>
-  <button class="btn" :class="{'btn--no-active': !isActive }">
+  <button class="btn" :class="{'btn--disabled': !isActive }">
     <slot></slot>
   </button>
 </template>
@@ -27,13 +27,9 @@
     font-weight: 600;
     font-size: 14px;
     text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-    &--active {
-      background: #7BAE73;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    }
-
-    &--no-active {
+    &--disabled {
       background: #EEEEEE;
       color: #B4B4B4;
       pointer-events: none;

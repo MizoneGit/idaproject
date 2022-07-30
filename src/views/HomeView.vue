@@ -6,7 +6,7 @@
         <v-select :options="sortOptions" :model-value="selectedSort" @update:model-value="setSelectedSort" class="homepage__select"></v-select>
       </div>
       <div class="homepage__body">
-        <product-add-form class="homepage__form"/>
+        <product-add-form @create="createProduct" class="homepage__form"/>
         <products-list :products="sortedProducts" class="homepage__products"/>
       </div>
     </div>
@@ -16,7 +16,7 @@
 <script>
   import productAddForm from "@/components/ProductAddForm";
   import productsList from "@/components/ProductsList";
-  import { mapState, mapMutations, mapGetters } from 'vuex';
+  import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
 
   export default {
     name: 'HomeView',
@@ -24,6 +24,9 @@
     methods: {
       ...mapMutations({
         setSelectedSort: 'SET_SELECTED_SORT'
+      }),
+      ...mapActions({
+        createProduct: 'CREATE_PRODUCT'
       }),
     },
     computed: {

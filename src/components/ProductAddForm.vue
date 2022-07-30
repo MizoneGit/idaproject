@@ -2,7 +2,7 @@
   <form class="add-form" @submit.prevent>
     <div class="add-form__input">
       <v-label :required="true" for="name">Наименование товара</v-label>
-      <v-input v-model="dataForm.name" id="name" placeholder="Введите наименование товара" />
+      <v-input v-focus v-model="dataForm.name" id="name" placeholder="Введите наименование товара" />
       <v-error-messages :error="errors.name"></v-error-messages>
     </div>
     <div class="add-form__input">
@@ -24,8 +24,6 @@
 </template>
 
 <script>
-  import { mapActions } from "vuex";
-
   export default {
     name: "ProductAddForm",
     data() {
@@ -51,16 +49,13 @@
       },
     },
     methods: {
-      ...mapActions({
-        createProduct: 'CREATE_PRODUCT'
-      }),
       addProduct() {
         if (!this.validateForm()) {
           this.isActiveButton = false;
           return;
         }
 
-        this.createProduct(this.dataForm);
+        this.$emit('create', this.dataForm);
         this.clearDataForm();
       },
       validateForm() {
@@ -119,7 +114,7 @@
       },
       isEmptyObject(obj) {
         for (let i in obj) {
-          if (obj.hasOwnProperty(i)) {
+          if (obj.hasOwnProperty(i) && obj[i]) {
             return false;
           }
         }
