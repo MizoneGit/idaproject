@@ -1,6 +1,8 @@
 <template>
   <div class="products-list">
-    <product-element v-for="product in products" :key="product.id" :product="product" @remove="removeProduct(product)" class="products-list__item" />
+    <transition-group name="products-list">
+      <product-element v-for="product in products" :key="product.id" :product="product" @remove="removeProduct(product)" class="products-list__item" />
+    </transition-group>
   </div>
 </template>
 
@@ -30,6 +32,22 @@
     grid-gap: 16px;
     width: 100%;
 
+    &-enter-active,
+    &-leave-active {
+      transition: all 0.3s ease;
+    }
+    &-enter-from {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    &-leave-to {
+      opacity: 0;
+      transform: translateY(-20px);
+    }
+    &-move {
+      transition: transform 0.8s ease;
+    }
+
     @media screen and (max-width: 1439px) {
       grid-template-columns: repeat(2, 332px);
     }
@@ -37,7 +55,6 @@
     @media screen and (max-width: 1091px) {
       display: flex;
       flex-wrap: wrap;
-
 
       &__item {
         width: calc(50% - 8px);
