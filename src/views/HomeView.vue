@@ -7,7 +7,8 @@
       </div>
       <div class="homepage__body">
         <product-add-form @create="createProduct" class="homepage__form"/>
-        <products-list :products="sortedProducts" class="homepage__products"/>
+        <products-list v-if="sortedProducts.length" :products="sortedProducts" class="homepage__products"/>
+        <div v-else class="homepage__empty">Список пуст</div>
       </div>
     </div>
   </div>
@@ -91,6 +92,17 @@
       @media screen and (max-width: 740px) {
         justify-content: center;
       }
+    }
+    &__empty {
+      width: 100%;
+      padding: 24px;
+      background: #FFFEFB;
+      box-shadow: 0 20px 30px rgba(0, 0, 0, 0.04), 0 6px 10px rgba(0, 0, 0, 0.02);
+      border-radius: 4px;
+      text-align: center;
+      font-size: 32px;
+      font-weight: 600;
+      color: #49485E;
     }
   }
 </style>
