@@ -1,7 +1,7 @@
 <template>
   <div class="product">
     <div class="product__image">
-      <img :src="formSrcImage(product.src)" alt="Товар">
+      <img :src="formSrcImage(product.url)" alt="Товар">
     </div>
     <h3 class="product__title">{{ product.name }}</h3>
     <p class="product__description">{{ product.description }}</p>
@@ -29,12 +29,12 @@
       ...mapMutations({
         deleteProduct: 'DELETE_PRODUCT'
       }),
-      formSrcImage(src) {
-        if (!src) {
+      formSrcImage(url) {
+        if (!url) {
           return require('@/assets/images/default.jpg')
         }
 
-        return require(src);
+        return url.toString();
       },
       formatPriceRUB(price) {
         if (!parseInt(price)) return '';
