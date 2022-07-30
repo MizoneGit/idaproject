@@ -1,6 +1,6 @@
 <template>
   <div class="products-list">
-    <product-element v-for="product in products" :key="product.id" :product="product" class="products-list__item" />
+    <product-element v-for="product in products" :key="product.id" :product="product" @remove="removeProduct(product)" class="products-list__item" />
   </div>
 </template>
 
@@ -12,7 +12,12 @@
     props: {
       products: {
         type: Array,
-        default: () => []
+        require: true
+      }
+    },
+    methods: {
+      removeProduct(product) {
+        this.$emit('remove', product);
       }
     }
   }
