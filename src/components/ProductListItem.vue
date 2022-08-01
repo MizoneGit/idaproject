@@ -14,7 +14,7 @@
 
 <script>
   export default {
-    name: "ProductElement",
+    name: "product-list-item",
     props: {
       product: {
         type: Object,

@@ -1,12 +1,12 @@
-import VInput from "@/components/UI/v-input";
-import VButton from "@/components/UI/v-button";
-import VLabel from "@/components/UI/v-label";
-import VTextarea from "@/components/UI/v-textarea";
-import VButtonDelete from "@/components/UI/v-button-delete";
-import VErrorMessages from "@/components/UI/v-error-messages";
-import VSelect from "@/components/UI/v-select";
-import VAlert from "@/components/UI/v-alert";
-import VLoader from "@/components/UI/v-loader";
+import VInput from "@/components/UI/VInput";
+import VButton from "@/components/UI/VButton";
+import VLabel from "@/components/UI/VLabel";
+import VTextarea from "@/components/UI/VTextarea";
+import VButtonDelete from "@/components/UI/VButtonDelete";
+import VErrorMessages from "@/components/UI/VErrorMessages";
+import VSelect from "@/components/UI/VSelect";
+import VAlert from "@/components/UI/VAlert";
+import VLoader from "@/components/UI/VLoader";
 
 export default [
     VInput, VButton, VLabel, VTextarea, VButtonDelete, VErrorMessages, VSelect, VAlert, VLoader

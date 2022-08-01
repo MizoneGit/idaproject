@@ -1,17 +1,23 @@
 <template>
   <div v-if="products.length" class="products-list">
     <transition-group name="products-list">
-      <product-element v-for="product in products" :key="product.id" :product="product" @remove="removeProduct(product)" class="products-list__item" />
+      <product-list-item
+          v-for="product in products"
+          :key="product.id"
+          :product="product"
+          @remove="removeProduct(product)"
+          class="products-list__item"
+      />
     </transition-group>
   </div>
   <div v-else class="products-list__empty">Список пуст</div>
 </template>
 
 <script>
-  import productElement from "@/components/ProductElement";
+  import ProductListItem from "@/components/ProductListItem";
   export default {
-    name: "ProductsList",
-    components: { productElement },
+    name: "product-list",
+    components: { ProductListItem },
     props: {
       products: {
         type: Array,

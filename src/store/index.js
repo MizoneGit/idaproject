@@ -80,7 +80,7 @@ export default createStore({
         dispatch('SHOW_ALERT');
       }
     },
-    FETCH_PRODUCTS({ commit, dispatch }) {
+    FETCH_PRODUCTS({ commit }) {
       let products = JSON.parse(localStorage.getItem('products')) ?? [];
       commit('SET_PRODUCTS', products);
       setTimeout(() => {
