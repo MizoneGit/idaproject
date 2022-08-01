@@ -27,7 +27,7 @@ export default createStore({
     },
   },
   mutations: {
-    SET_LOCAL_STORAGE_DATA(state) {
+    SET_PRODUCT_DATA_TO_LOCALSTORAGE(state) {
       localStorage.setItem('products', JSON.stringify(state.products));
     },
     ADD_PRODUCT(state, product) {
@@ -65,7 +65,7 @@ export default createStore({
       product.id = Date.now();
       try {
         commit('ADD_PRODUCT', product);
-        commit('SET_LOCAL_STORAGE_DATA');
+        commit('SET_PRODUCT_DATA_TO_LOCALSTORAGE');
         dispatch('SHOW_ALERT', true);
       } catch (e) {
         dispatch('SHOW_ALERT');
@@ -74,7 +74,7 @@ export default createStore({
     REMOVE_PRODUCT({ commit, dispatch }, product) {
       try {
         commit('DELETE_PRODUCT', product);
-        commit('SET_LOCAL_STORAGE_DATA');
+        commit('SET_PRODUCT_DATA_TO_LOCALSTORAGE');
         dispatch('SHOW_ALERT', true);
       } catch (e) {
         dispatch('SHOW_ALERT');
