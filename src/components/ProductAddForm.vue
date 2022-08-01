@@ -2,24 +2,35 @@
   <form class="add-form" @submit.prevent>
     <div class="add-form__input">
       <v-label :required="true" for="name">Наименование товара</v-label>
-      <v-input v-focus v-model="dataForm.name" id="name" placeholder="Введите наименование товара" />
-      <v-error-messages :error="errors.name"></v-error-messages>
+      <v-input
+          v-focus
+          v-model="dataForm.name"
+          id="name"
+          placeholder="Введите наименование товара"
+      />
+      <v-error-messages :error="errors.name" />
     </div>
     <div class="add-form__input">
       <v-label for="description">Описание товара</v-label>
-      <v-textarea v-model="dataForm.description" id="description" placeholder="Введите описание товара" rows="5"></v-textarea>
+      <v-textarea v-model="dataForm.description" id="description" placeholder="Введите описание товара" rows="5" />
     </div>
     <div class="add-form__input">
       <v-label :required="true" for="link">Ссылка на изображение товара</v-label>
       <v-input v-model="dataForm.url" id="link" placeholder="Введите ссылку" />
-      <v-error-messages :error="errors.url"></v-error-messages>
+      <v-error-messages :error="errors.url" />
     </div>
     <div class="add-form__input">
       <v-label :required="true" for="price">Цена товара</v-label>
       <v-input v-model="formatPriceInput" id="price" placeholder="Введите цену" />
-      <v-error-messages :error="errors.price"></v-error-messages>
+      <v-error-messages :error="errors.price" />
     </div>
-    <v-button @click="addProduct" :isActive="isActiveButton" type="submit">Добавить товар</v-button>
+    <v-button
+        @click="addProduct"
+        :isActive="isActiveButton"
+        type="submit"
+    >
+      Добавить товар
+    </v-button>
   </form>
 </template>
 

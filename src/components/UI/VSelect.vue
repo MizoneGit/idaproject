@@ -1,7 +1,17 @@
 <template>
-  <select class="select" v-model="modelValue" @change="changeOption">
+  <select
+      v-model="modelValue"
+      @change="changeOption"
+      class="select"
+  >
     <option value="" disabled>По умолчанию</option>
-    <option v-for="option in options" :key="option.value" :value="option.value">{{ option.name }}</option>
+    <option
+        v-for="option in options"
+        :key="option.value"
+        :value="option.value"
+    >
+      {{ option.name }}
+    </option>
   </select>
 </template>
 
@@ -39,7 +49,7 @@ export default {
   background-position-x: calc(100% - 16px);
 
   &:after {
-    content: "▼";
+    content: "";
     position: absolute;
     right: 8px;
     top: 4px;

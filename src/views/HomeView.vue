@@ -4,11 +4,21 @@
     <div class="container">
       <div class="homepage__header">
         <h1 class="homepage__title">Добавление товара</h1>
-        <v-select :options="sortOptions" :model-value="selectedSort" @update:model-value="setSelectedSort" class="homepage__select"></v-select>
+        <v-select
+            :options="sortOptions"
+            :model-value="selectedSort"
+            @update:model-value="setSelectedSort"
+            class="homepage__select"
+        />
       </div>
       <div class="homepage__body">
         <product-add-form @create="createProduct" class="homepage__form"/>
-        <products-list v-if="!isProductLoading" :products="sortedProducts" @remove="removeProduct" class="homepage__products"/>
+        <product-list
+            v-if="!isProductLoading"
+            :products="sortedProducts"
+            @remove="removeProduct"
+            class="homepage__products"
+        />
         <v-loader class="homepage__loader" v-else></v-loader>
       </div>
     </div>
@@ -16,13 +26,13 @@
 </template>
 
 <script>
-  import productAddForm from "@/components/ProductAddForm";
-  import productsList from "@/components/ProductsList";
+  import ProductAddForm from "@/components/ProductAddForm";
+  import ProductList from "@/components/ProductList";
   import { mapState, mapMutations, mapGetters, mapActions } from 'vuex';
 
   export default {
     name: 'HomeView',
-    components: { productsList, productAddForm },
+    components: { ProductList, ProductAddForm },
     computed: {
       ...mapState({
         products: state => state.products,
