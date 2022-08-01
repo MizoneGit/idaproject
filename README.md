@@ -10,7 +10,7 @@ npm install
 npm run serve
 ```
 
-### Запуск для продаршена
+### Запуск для продакшена
 ```
 npm run build
 ```
