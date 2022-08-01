@@ -14,3 +14,8 @@ npm run serve
 ```
 npm run build
 ```
+
+### Версия Node JS
+```
+v16.13.1
+```
